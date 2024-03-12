@@ -1,20 +1,23 @@
 import express, { Express, Request, Response,NextFunction } from "express";
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import { connect } from './db';
 import authenticateUser from './auth/auth'
-import router from "./users/userRoute";
-import urlRoute from "./urls/urlRoute";
+import router1 from "./users/userRoute";
+import {router} from "./urls/urlRoute";
 import { logger } from "./logger";
-import viewRouter from './views/viewRouter'
+// import viewRouter from './views/viewRouter'
 import path from "path";
 import cookieParser from "cookie-parser";
+import userController from './users/userController'
+import {validateLogin,validateUser} from "./users/userMiddleware"
 
 
-dotenv.config();
+
+dotenv.config({ path: __dirname + '/./../../.env' })
 
 const app: Express = express();
 
-const port = process.env.PORT;
+const port = process.env.PORT!;
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
@@ -24,21 +27,21 @@ app.use('/public' ,express.static(path.join(__dirname,'reset.html')));
 app.set('views',path.join(__dirname,'./views'))
 app.engine('ejs', require('ejs').renderFile)
 app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, ''));
+app.set('views', path.join(__dirname, ''));
 
 
-app.use('/user', router)
-app.use('/s', urlRoute)
-app.use('/', viewRouter)
+app.use('/user/v1',router1)
+app.use('/url/v1', router)
+// app.use('/', viewRouter)
 
 
-// router.get('/', async (req, res) => {
-// 	res.render('index', {
-// 		loginUser: res.locals.loginUser || null,
-// 	});
-// });
+app.get('/', async (req:any, res:any) => {
+	res.send('Shortener URL API');
+});
 
-app.get('*', (req:Request, res:Response) => {
+
+
+app.get('*', (req:any, res:any) => {
 	res.status(404).json({
 		data: null,
 		massage: 'Route Not Found',
@@ -51,7 +54,7 @@ app.use((err:any, req:Request, res:Response, next:NextFunction) => {
 		error: err.stack,
 	});
 });
-connect(process.env.DB_URL)
+connect(process.env.DB_URL!)
 
 app.listen(port, () => {
 	logger.info('[Server]=> Started');
