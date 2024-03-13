@@ -35,41 +35,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv = __importStar(require("dotenv"));
-const userRoute_1 = __importDefault(require("./users/userRoute"));
-const urlRoute_1 = require("./urls/urlRoute");
-// import viewRouter from './views/viewRouter'
-const path_1 = __importDefault(require("path"));
-const cookie_parser_1 = __importDefault(require("cookie-parser"));
-dotenv.config({ path: __dirname + '/./../../.env' });
-const app = (0, express_1.default)();
-const port = process.env.PORT;
-app.use(express_1.default.json());
-app.use(express_1.default.urlencoded({ extended: true }));
-app.use((0, cookie_parser_1.default)());
-app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'public')));
-app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'reset.html')));
-app.set('views', path_1.default.join(__dirname, './views'));
-app.engine('ejs', require('ejs').renderFile);
-app.set('view engine', 'ejs');
-app.set('views', path_1.default.join(__dirname, ''));
-app.use('/user/v1', userRoute_1.default);
-app.use('/url/v1', urlRoute_1.router);
-// app.use('/', viewRouter)
-app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send('Shortener URL API');
-}));
-app.get('*', (req, res) => {
-    res.status(404).json({
-        data: null,
-        massage: 'Route Not Found',
-    });
+const node_test_1 = __importStar(require("node:test"));
+const api_1 = __importDefault(require("../api"));
+const db = __importStar(require("./app.spec"));
+const supertest_1 = __importDefault(require("supertest"));
+const request = (0, supertest_1.default)(api_1.default);
+(0, node_test_1.describe)('Test request with mongoose', () => {
+    beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
+        yield db.connect();
+    }));
+    (0, node_test_1.afterEach)(() => __awaiter(void 0, void 0, void 0, function* () {
+        yield db.clearDatabase();
+    }));
+    afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
+        yield db.closeDatabase();
+    }));
+    (0, node_test_1.default)('GET - /', () => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield request.get('/').send();
+        const body = res.body;
+        const message = body.message;
+        expect(res.statusCode);
+        expect(message);
+    }));
 });
-app.use((err, req, res, next) => {
-    res.status(500).json({
-        data: null,
-        error: err.stack,
-    });
-});
-exports.default = app;
+function beforeAll(arg0) {
+    throw new Error('Function not implemented.');
+}
+function afterAll(arg0) {
+    throw new Error('Function not implemented.');
+}
+function expect(statusCode) {
+    throw new Error('Function not implemented.');
+}
+function toBe(arg0) {
+    throw new Error('Function not implemented.');
+}

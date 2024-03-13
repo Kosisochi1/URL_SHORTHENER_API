@@ -54,8 +54,6 @@ app.use((err:any, req:Request, res:Response, next:NextFunction) => {
 		error: err.stack,
 	});
 });
-connect(process.env.DB_URL!)
 
-app.listen(port, () => {
-	logger.info('[Server]=> Started');
-});
+
+export default app
