@@ -47,16 +47,21 @@ dotenv.config({ path: __dirname + '/./../../.env' });
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 // Example usage
-const corsOptions = {
-    origin: 'https://url-shorthener-api.onrender.com',
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type:application/json'],
-    credentials: true
-};
+// const corsOptions: CorsOptions = {
+//     origin: 'https://url-shorthener-api.onrender.com',
+//     methods: ['GET', 'POST','PATCH','DELETE'],
+//     allowedHeaders: ['Content-Type:application/json'],
+//     credentials: true
+// };
+// app.use(function(req, res, next) {
+// 	res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+// 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+// 	next();
+//   })
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
-app.use((0, cors_1.default)(corsOptions));
+app.use((0, cors_1.default)());
 app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'reset.html')));
 app.set('views', path_1.default.join(__dirname, './views'));
