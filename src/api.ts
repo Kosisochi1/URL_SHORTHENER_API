@@ -1,4 +1,4 @@
-import express, { Express, Request, Response,NextFunction } from "express";
+import express, { Express, Request, Response,NextFunction, application } from "express";
 import * as dotenv from "dotenv";
 import { connect } from './db';
 import authenticateUser from './auth/auth'
@@ -10,6 +10,8 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import userController from './users/userController'
 import {validateLogin,validateUser} from "./users/userMiddleware"
+import cors from 'cors'
+import { json } from "stream/consumers";
 
 
 
@@ -18,9 +20,29 @@ dotenv.config({ path: __dirname + '/./../../.env' })
 const app: Express = express();
 
 const port = process.env.PORT!;
+
+interface CorsOptions {
+    origin: string | RegExp | (string | RegExp)[];
+    methods?: string | string[];
+    allowedHeaders?: string | string[];
+    exposedHeaders?: string | string[];
+    credentials?: boolean;
+    maxAge?: number;
+    preflightContinue?: boolean;
+    optionsSuccessStatus?: number;
+}
+
+// Example usage
+const corsOptions: CorsOptions = {
+    origin: 'https://url-shorthener-api.onrender.com',
+    methods: ['GET', 'POST','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type:application/json'],
+    credentials: true
+};
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
+app.use(cors(corsOptions))
 
 app.use('/public' ,express.static(path.join(__dirname,'public')));
 app.use('/public' ,express.static(path.join(__dirname,'reset.html')));

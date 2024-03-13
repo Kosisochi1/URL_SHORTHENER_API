@@ -42,12 +42,21 @@ const urlRoute_1 = require("./urls/urlRoute");
 // import viewRouter from './views/viewRouter'
 const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const cors_1 = __importDefault(require("cors"));
 dotenv.config({ path: __dirname + '/./../../.env' });
 const app = (0, express_1.default)();
 const port = process.env.PORT;
+// Example usage
+const corsOptions = {
+    origin: 'https://url-shorthener-api.onrender.com',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type:application/json'],
+    credentials: true
+};
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
+app.use((0, cors_1.default)(corsOptions));
 app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'reset.html')));
 app.set('views', path_1.default.join(__dirname, './views'));
