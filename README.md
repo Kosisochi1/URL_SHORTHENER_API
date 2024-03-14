@@ -26,7 +26,19 @@ Users can get the details to specific short url.
 ### API Endpoints
 |HTTP Verbs |Endpoints|Action|
 |---|---|---|
-|Get | / |Home Route |
+|post | /user/v1/login |login Route |
+|post | /user/v1/signup |register Route |
+|post | /user/v1/verify_mail |verify_mail Route |
+|post | /user/v1/forget_password |forget_password Route |
+|post | / user/v1/reset_password|reset_password Route |
+|post | /url/v1/s.com/* |Redirect Route |
+|post | /url/v1/history_list |History  Route |
+|post | /url/v1/analytic |list of url with detail Route |
+|post | /url/v1/analytic/:id |Detail for one url  |
+|post | /url/v1/update/:id |update long url Route |
+|post | /url/v1/delete |Delete all url Route |
+|post | /url/v1/deleteOneItem/:id |Delete One url Route |
+
 
 
 ### Technology Used

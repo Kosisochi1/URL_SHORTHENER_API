@@ -10,8 +10,10 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import userController from './users/userController'
 import {validateLogin,validateUser} from "./users/userMiddleware"
-import cors from 'cors'
-import { json } from "stream/consumers";
+import cors from 'cors';
+import helmet from 'helmet'
+import swaggerUI from 'swagger-ui-express'
+import YAMl from 'yamljs'
 
 
 
@@ -32,21 +34,12 @@ interface CorsOptions {
     optionsSuccessStatus?: number;
 }
 
-// Example usage
-// const corsOptions: CorsOptions = {
-//     origin: 'https://url-shorthener-api.onrender.com',
-//     methods: ['GET', 'POST','PATCH','DELETE'],
-//     allowedHeaders: ['Content-Type:application/json'],
-//     credentials: true
-// };
-// app.use(function(req, res, next) {
-// 	res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
-// 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-// 	next();
-//   })
+
+const swaggerDocument = YAMl.load('./swagger.yaml')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
+app.use(helmet())
 app.use(cors())
 
 app.use('/public' ,express.static(path.join(__dirname,'public')));
@@ -57,15 +50,16 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, ''));
 
 
-app.use('/user/v1',router1)
-app.use('/url/v1', router)
 // app.use('/', viewRouter)
 
 
 app.get('/', async (req:any, res:any) => {
 	res.send('Shortener URL API');
 });
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocument))
 
+app.use('/user/v1',router1)
+app.use('/url/v1', router)
 
 
 app.get('*', (req:any, res:any) => {

@@ -1,0 +1,921 @@
+openapi: 3.0.0
+info:
+  title: main
+  contact: {}
+  version: '1.0'
+  x-codegen-settings:
+    Nullify404: false
+    GenerateAsyncCode: true
+    UseMethodPrefix: false
+    UseModelPostfix: false
+    UseControllerPrefix: true
+    UseEnumPostfix: true
+    CollectParameters: false
+    UseConstructorsForConfig: false
+    UseCommonSDKLibrary: false
+    iOSUseAppInfoPlist: false
+    AndroidUseAppManifest: false
+    BodySerialization: 0
+    EnableAdditionalModelProperties: false
+    PreserveParameterOrder: true
+    AppendContentHeaders: true
+    iOSGenerateCoreData: false
+    GenerateInterfaces: false
+    NodeHttpClient: NODE_REQUEST
+    ValidateRequiredParameters: false
+    JavaUsePropertiesConfig: false
+    Timeout: 0
+    StoreTimezoneInformation: false
+    EnablePHPComposerVersionString: false
+    EnableLogging: false
+    ArraySerialization: Indexed
+    ModelSerializationScheme: Json
+    UseExceptionPrefix: true
+    RunscopeEnabled: false
+    AndroidHttpClient: ANDROID_OK
+    ObjCHttpClient: UNIREST
+    CSharpHttpClient: UNIREST
+    PHPHttpClient: UNIREST
+    JavaHttpClient: JAVA_OK
+    ParameterArrayFormat: ParamArrayWithIndex
+    SecurityProtocols:
+    - Ssl3
+    - Tls
+    GenerateTravisConfig: false
+    GenerateCircleConfig: false
+    GenerateAppveyorConfig: false
+    GenerateJenkinsConfig: false
+    EnableHttpCache: false
+    Retries: 0
+    RetryInterval: 1
+    GenerateAdvancedDocs: true
+    UnderscoreNumbers: true
+    UseSingletonPattern: true
+    DisableLinting: false
+    ApplyCustomizations: []
+    SortResources: false
+    AllowSkippingSSLCertVerification: false
+    DoNotSplitWords: []
+    EnableGlobalUserAgent: true
+    ReturnCompleteHttpResponse: false
+    GenerateModels: true
+    GenerateExceptions: true
+    IgnoreIfNullJson: false
+    DisableDocs: false
+    LiftParameterDescriptionFromCustomType: false
+    ThrowForHttpErrorStatusCodes: true
+    ResponseMapping:
+      Type: Simple
+    ForceKeywordArgsInRuby: false
+    SymbolizeHashKeysInRuby: false
+    UsageExampleEndpoint:
+      Description: ''
+      EndpointGroupName: ''
+      EndpointName: ''
+    IsLatestVersion: false
+    EnableImmutableModels: false
+    GenerateEnums: true
+    BackoffFactor: 2
+    StatusCodesToRetry:
+    - 408
+    - 413
+    - 429
+    - 500
+    - 502
+    - 503
+    - 504
+    - 521
+    - 522
+    - 524
+    RequestMethodsToRetry:
+    - GET
+    - PUT
+    UserConfigurableRetries: true
+    UseEndpointMethodName: false
+    EncodeTemplateParameters: true
+    GenerateExamplesForOptionalFields: false
+    MultitargetDotnetVersions: false
+    BackoffMax: 0
+    RetryOnTimeout: true
+    EnableCookies: false
+    EnableJsonPassThroughForAny: false
+    PascalCaseEnumForCSharp: false
+    PascalCaseEnumForTypeScript: false
+    DisableMultipleAuth: false
+    AddSingleAuthDeprecatedCode: true
+    EnableExperimentalTypeCombinatorGeneration: false
+    ErrorTemplates: {}
+  x-server-configuration:
+    default-environment: production
+    default-server: Server 1
+    environments:
+    - name: production
+      servers:
+      - name: Server 2
+        url: https://url-shorthener-api.onrender.com
+    parameters: []
+  x-image-uri: ''
+servers:
+
+- url: https://url-shorthener-api.onrender.com
+  variables: {}
+paths:
+  /user/v1/signup:
+    post:
+      tags:
+      - user
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/registerrequest'
+              - example:
+                  Name: kosi
+                  Email: ezeoyiri92@gmail.com
+                  Password: Kosi
+            example:
+              Name: kosi
+              Email: ezeoyiri92@gmail.com
+              Password: Kosi
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /user/v1/signup
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "Name": "kosi",
+
+              "Email": "ezeoyiri92@gmail.com",
+
+              "Password": "Kosi"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: register
+      x-server-name: Server 2
+  /user/v1/login:
+    post:
+      tags:
+      - user
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/loginrequest'
+              - example:
+                  Email: ezeoyiri92@gmail.com
+                  Password: onyi
+            example:
+              Email: ezeoyiri92@gmail.com
+              Password: onyi
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /user/v1/login
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "Email": "ezeoyiri92@gmail.com",
+
+              "Password": "onyi"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: login
+      x-server-name: Server 2
+  /user/verify_email:
+    post:
+      tags:
+      - user
+      summary: verify_mail
+      operationId: verify_mail
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/verify_mail_request'
+              - example:
+                  Email: ezeoyiri92@gmail.com
+                  verificationToken: 49975c47f0466daf8570837d9bbe025b
+            example:
+              Email: ezeoyiri92@gmail.com
+              verificationToken: 49975c47f0466daf8570837d9bbe025b
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /user/verify_email
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "Email": "ezeoyiri92@gmail.com",
+
+              "verificationToken": "49975c47f0466daf8570837d9bbe025b"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: verify_mail
+      x-server-name: Server 2
+  /user/v1/forget_password:
+    post:
+      tags:
+      - user
+      summary: Forgot Password
+      operationId: ForgotPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ForgotPasswordRequest'
+              - example:
+                  Email: ezeoyiri92@gmail.com
+            example:
+              Email: ezeoyiri92@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /user/v1/forget_password
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "Email": "ezeoyiri92@gmail.com"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Forgot Password
+      x-server-name: Server 2
+  /user/v1/reset_password:
+    post:
+      tags:
+      - user
+      summary: Reset password
+      operationId: Resetpassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ResetpasswordRequest'
+              - example:
+                  Email: ezeoyiri92@gmail.com
+                  Password: onyi
+            example:
+              Email: ezeoyiri92@gmail.com
+              Password: onyi
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /user/v1/reset_password
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "Email": "ezeoyiri92@gmail.com",
+
+              "Password": "onyi"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Reset password
+      x-server-name: Server 2
+  /url/v1/short_url:
+    post:
+      tags:
+      - URL
+      summary: create short url
+      operationId: createshorturl
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createshorturlrequest'
+              - example:
+                  Long_url: www.google.com
+                  Custom_url: ''
+            example:
+              Long_url: www.google.com
+              Custom_url: ''
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: POST
+          uri: /url/v1/short_url
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "Long_url": "www.google.com",
+
+              "Custom_url": ""
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: create short url
+      x-server-name: Server 2
+  /url/v1/s.com/aa24ce0:
+    get:
+      tags:
+      - URL
+      summary: redirect url
+      operationId: redirecturl
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: GET
+          uri: /url/v1/s.com/aa24ce0
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: redirect url
+      x-server-name: Server 2
+  /url/v1/history_list:
+    get:
+      tags:
+      - URL
+      summary: short url history
+      operationId: shorturlhistory
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: GET
+          uri: /url/v1/history_list
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: short url history
+      x-server-name: Server 2
+  /url/v1/update/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    patch:
+      tags:
+      - URL
+      summary: Edit URL
+      operationId: EditURL
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/EditURLRequest'
+              - example:
+                  Long_url: www.altschoolafrica.com
+            example:
+              Long_url: www.altschoolafrica.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: PATCH
+          
+          headers:
+            Content-Type: application/json
+          body: >-
+            {
+
+              "Long_url": "www.altschoolafrica.com"
+
+            }
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Edit URL
+      x-server-name: Server 2
+  /url/v1/delete:
+    delete:
+      tags:
+      - URL
+      summary: Delete All History
+      operationId: DeleteAllHistory
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: DELETE
+          uri: /url/v1/delete
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Delete All History
+      x-server-name: Server 2
+  /url/v1/deleteOneItem/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    delete:
+      tags:
+      - URL
+      summary: Delete One Item
+      operationId: DeleteOneItem
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: DELETE
+          uri: /url/v1/deleteOneItem/65eec9ad1f13359fb4c59cab
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: Delete One Item
+      x-server-name: Server 2
+  /url/v1/analytic:
+    get:
+      tags:
+      - URL
+      summary: analytic
+      operationId: analytic
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: GET
+          uri: /url/v1/analytic
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: analytic
+      x-server-name: Server 2
+  /url/v1/analytic/65eed0e7983421f282fda978:
+    get:
+      tags:
+      - URL
+      summary: analytic Detail
+      operationId: analyticDetail
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://url-shorthener-api.onrender.com
+        variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+        ErrorTemplates: {}
+        SkipAdditionalHeaders: false
+      x-unitTests:
+      - request:
+          method: GET
+          uri: /url/v1/analytic/65eed0e7983421f282fda978
+        expectedResponse:
+          x-allowExtraHeaders: true
+          x-bodyMatchMode: NONE
+          x-arrayOrderedMatching: false
+          x-arrayCheckCount: false
+          x-matchResponseSchema: true
+          statusCode: '200'
+          headers: {}
+        x-testShouldPass: true
+        x-testEnabled: false
+        x-testName: analytic Detail
+      x-server-name: Server 2
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+      - Name
+      - Email
+      - Password
+      type: object
+      properties:
+        Name:
+          type: string
+        Email:
+          type: string
+        Password:
+          type: string
+      example:
+        Name: kosi
+        Email: ezeoyiri92@gmail.com
+        Password: Kosi
+    loginrequest:
+      title: loginrequest
+      required:
+      - Email
+      - Password
+      type: object
+      properties:
+        Email:
+          type: string
+        Password:
+          type: string
+      example:
+        Email: ezeoyiri92@gmail.com
+        Password: onyi
+    verify_mail_request:
+      title: verify_mail_request
+      required:
+      - Email
+      - verificationToken
+      type: object
+      properties:
+        Email:
+          type: string
+        verificationToken:
+          type: string
+      example:
+        Email: ezeoyiri92@gmail.com
+        verificationToken: 49975c47f0466daf8570837d9bbe025b
+    createshorturlrequest:
+      title: createshorturlrequest
+      required:
+      - Long_url
+      - Custom_url
+      type: object
+      properties:
+        Long_url:
+          type: string
+        Custom_url:
+          type: string
+      example:
+        Long_url: www.google.com
+        Custom_url: ''
+    EditURLRequest:
+      title: EditURLRequest
+      required:
+      - Long_url
+      type: object
+      properties:
+        Long_url:
+          type: string
+      example:
+        Long_url: www.altschoolafrica.com
+    ForgotPasswordRequest:
+      title: ForgotPasswordRequest
+      required:
+      - Email
+      type: object
+      properties:
+        Email:
+          type: string
+      example:
+        Email: ezeoyiri92@gmail.com
+    ResetpasswordRequest:
+      title: ResetpasswordRequest
+      required:
+      - Email
+      - Password
+      type: object
+      properties:
+        Email:
+          type: string
+        Password:
+          type: string
+      example:
+        Email: ezeoyiri92@gmail.com
+        Password: onyi
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+
+- name: user
+  description: ''
+- name: URL
+  description: ''

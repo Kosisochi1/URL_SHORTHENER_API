@@ -43,24 +43,17 @@ const urlRoute_1 = require("./urls/urlRoute");
 const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
+const helmet_1 = __importDefault(require("helmet"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const yamljs_1 = __importDefault(require("yamljs"));
 dotenv.config({ path: __dirname + '/./../../.env' });
 const app = (0, express_1.default)();
 const port = process.env.PORT;
-// Example usage
-// const corsOptions: CorsOptions = {
-//     origin: 'https://url-shorthener-api.onrender.com',
-//     methods: ['GET', 'POST','PATCH','DELETE'],
-//     allowedHeaders: ['Content-Type:application/json'],
-//     credentials: true
-// };
-// app.use(function(req, res, next) {
-// 	res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
-// 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-// 	next();
-//   })
+const swaggerDocument = yamljs_1.default.load('./swagger.yaml');
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
+app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)());
 app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'reset.html')));
@@ -68,12 +61,13 @@ app.set('views', path_1.default.join(__dirname, './views'));
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', path_1.default.join(__dirname, ''));
-app.use('/user/v1', userRoute_1.default);
-app.use('/url/v1', urlRoute_1.router);
 // app.use('/', viewRouter)
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send('Shortener URL API');
 }));
+app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
+app.use('/user/v1', userRoute_1.default);
+app.use('/url/v1', urlRoute_1.router);
 app.get('*', (req, res) => {
     res.status(404).json({
         data: null,
