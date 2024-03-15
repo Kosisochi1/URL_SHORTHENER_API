@@ -37,7 +37,7 @@ Users can get the details to specific short url.
 |get | /url/v1/analytic |list of url with detail Route |
 |get | /url/v1/analytic/:id |Detail for one url  |
 |patch | /url/v1/update/:id |update long url Route |
-|dekete | /url/v1/delete |Delete all url Route |
+|delete | /url/v1/delete |Delete all url Route |
 |delete | /url/v1/deleteOneItem/:id |Delete One url Route |
 
 
