@@ -42,13 +42,14 @@ const validUrl_1 = require("../utils/validUrl");
 // import { qrCode } from "../utils/QrCode"
 const shortUrl_1 = require("../utils/shortUrl");
 const logger_1 = require("../logger");
+const cache_1 = __importDefault(require("../cach/cache"));
 const createShortUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { Long_url, Custom_url } = req.body;
         logger_1.logger.info('[Short Url Creation process ]=>  Started    ');
         const shortUrlGen = yield (0, shortUrl_1.url_short)(Custom_url);
         logger_1.logger.info('[Short Url Genareted ]=>  Genareted    ');
-        const shortUrl = `http://localhost:4500/url/v1/api${shortUrlGen}`;
+        const shortUrl = `https://k-short-url.onrender.com/url/v1/api${shortUrlGen}`;
         const options = `http://api.qrserver.com/v1/create-qr-code/?data=${shortUrl}&size=100x100`;
         logger_1.logger.info('[Qr Code  process]=>  Started    ');
         const QR_code = options;
@@ -124,6 +125,7 @@ function historyList(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             logger_1.logger.info('[Get all Url  History ]=>  Started    ');
+            const dKey = `cache-${req.url}`;
             const history = yield urlModel_1.default.find({ User_id: req.userExist._id });
             if (history.length <= 0) {
                 return res.status(404).json({
@@ -131,6 +133,7 @@ function historyList(req, res) {
                 });
             }
             logger_1.logger.info('[Get all Url  History ]=>  Completed    ');
+            cache_1.default.set(dKey, history, 1 * 60 * 60);
             return res.status(200).json({
                 massage: 'short link List',
                 data: history

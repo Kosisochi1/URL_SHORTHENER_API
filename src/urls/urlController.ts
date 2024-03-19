@@ -27,7 +27,7 @@ const createShortUrl = async (req: any, res:any) => {
     const shortUrlGen = await url_short(Custom_url)
     logger.info('[Short Url Genareted ]=>  Genareted    ');
 
-    const shortUrl =`http://localhost:4500/url/v1/api${shortUrlGen}`
+    const shortUrl =`https://k-short-url.onrender.com/url/v1/api${shortUrlGen}`
     const options = `http://api.qrserver.com/v1/create-qr-code/?data=${shortUrl}&size=100x100`
     logger.info('[Qr Code  process]=>  Started    ')
 
@@ -138,6 +138,8 @@ async function redirectShortUrl(req: any, res: any) {
 async function historyList(req: any,res:any) {
     try {
         logger.info('[Get all Url  History ]=>  Started    ');
+        const dKey = `cache-${req.url}`
+
 
 
         const history = await UrlModel.find({ User_id: req.userExist._id })
@@ -147,6 +149,8 @@ async function historyList(req: any,res:any) {
         })
         }
         logger.info('[Get all Url  History ]=>  Completed    ');
+        Cache.set(dKey, history, 1 * 60 * 60)
+
 
     
     return  res.status(200).json( {
